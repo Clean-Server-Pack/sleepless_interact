@@ -6,7 +6,7 @@ interface NuiMessageData<T = unknown> {
   data: T;
 }
 
-type NuiHandlerSignature<T> = (data: T) => void;
+type NuiHandlerSignature<T> = ( data: T) => void;
 
 /**
  * A hook that manage events listeners for receiving data from the client scripts
@@ -22,7 +22,7 @@ type NuiHandlerSignature<T> = (data: T) => void;
 
 export const useNuiEvent = <T = unknown>(
   action: string,
-  handler: (data: T) => void,
+  handler: ( data: T) => void,
 ) => {
   const savedHandler: MutableRefObject<NuiHandlerSignature<T>> = useRef(noop);
 
@@ -37,7 +37,7 @@ export const useNuiEvent = <T = unknown>(
 
       if (savedHandler.current) {
         if (eventAction === action) {
-          savedHandler.current(data);
+          savedHandler.current( data);
         }
       }
     };

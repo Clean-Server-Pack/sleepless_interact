@@ -184,3 +184,11 @@ RegisterCommand('checkInteractions', function(source, args, raw)
     lib.print.info(msgpack.unpack(msgpack.pack(store)))
     print('==========================================================================================')
 end)
+
+
+RegisterNuiCallback('GET_SETTINGS', function(data, cb)
+  cb({
+    primaryColor    = GetConvar('clean_lib:primaryColor', 'clean'),
+    primaryShade    = GetConvarInt('clean_lib:primaryShade', 9),
+  })
+end)

@@ -92,12 +92,12 @@ function Interaction:drawSprite()
     SetDrawOrigin(coords.x, coords.y, coords.z)
     if self.isActive and not self:isOnCooldown(GetGameTimer()) then
         if not store.menuBusy then
-            DrawInteractiveSprite(dui.txdName, dui.txtName, 0, 0, 1, 1, 0.0, 255, 255, 255, 255)
+          DrawInteractiveSprite(dui.txdName, dui.txtName, 0, 0, 1, 1, 0.0, 255, 255, 255, 255)
         end
     else
         local distanceRatio = self:getDistance() / self.renderDistance
         distanceRatio = 0.5 + (0.25 * distanceRatio)
-        local scale = 0.025 * (distanceRatio)
+        local scale = 0.015 * (distanceRatio)
         local dict = defaultIndicator.dict
         local txt = defaultIndicator.txt
         local spriteColour = color
@@ -111,8 +111,8 @@ function Interaction:drawSprite()
             spriteColour = self.sprite.color --[[@as vector4]]
         end
 
-        DrawInteractiveSprite(dict, txt, 0, 0, scale, scale * ratio, 0.0, spriteColour.x, spriteColour.y, spriteColour.z,
-            spriteColour.w)
+        -- DrawInteractiveSprite(dict, txt, 0, 0, scale, scale * ratio, 0.0, spriteColour.x, spriteColour.y, spriteColour.z,
+        --     spriteColour.w)
     end
     ClearDrawOrigin()
 end

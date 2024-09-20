@@ -9,10 +9,12 @@ dui.txd = CreateRuntimeTxd(dui.txdName)
 dui.screenW, dui.screenH = GetActiveScreenResolution()
 dui.loaded = false
 
-RegisterNuiCallback('loaded', function(_, cb)
-    cb(1)
+RegisterNuiCallback('loaded', function(data, cb)
     dui.loaded = true
+    cb(1)
 end)
+
+
 
 RegisterNuiCallback('setCurrentTextOption', function(data, cb)
     cb(1)
