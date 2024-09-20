@@ -6,7 +6,7 @@ export const Options = function (props: { options: OptionProps[]; selected?: num
   return (
     <Flex
       w='10vw'
-      mt='0.4vh'
+      // mt='0.4vh'
       h='100%'
       direction={'column'}
       gap='xs'

@@ -68,7 +68,7 @@ function CoordsInteraction:shouldRender()
 end
 
 function CoordsInteraction:shouldBeActive()
-    return self.currentDistance <= self.activeDistance
+  return self.currentDistance <= self.activeDistance
 end
 
 function CoordsInteraction:getCoords()

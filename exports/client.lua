@@ -50,10 +50,6 @@ function interact.addLocalEntity(data)
         DoesEntityExist(data.entity),
         string.format('Entity: %s Did Not Exist For addLocalEntity', data.entity)
     )
-    assert(
-        not NetworkGetEntityIsNetworked(data.entity),
-        'Net Entity Passed to addLocalEntity, use addEntity instead'
-    )
 
     utils.loadInteractionDefaults(data, GetInvokingResource())
     local newInteraction = LocalEntityInteraction:new(data)

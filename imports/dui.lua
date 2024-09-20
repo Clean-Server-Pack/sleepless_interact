@@ -23,15 +23,11 @@ RegisterNuiCallback('setCurrentTextOption', function(data, cb)
 end)
 
 local function loadDui()
-    dui.DuiObject = CreateDui("https://cfx-nui-sleepless_interact/web/build/index.html", dui.screenW, dui.screenH)
-    CreateRuntimeTextureFromDuiHandle(dui.txd, dui.txtName, GetDuiHandle(dui.DuiObject))
-    while not dui.loaded do
-        Wait(100)
-    end
-    SendDuiMessage(dui.DuiObject, json.encode({
-        action = 'setColor',
-        data = color
-    }))
+  dui.DuiObject = CreateDui("https://cfx-nui-sleepless_interact/web/build/index.html", dui.screenW, dui.screenH)
+  CreateRuntimeTextureFromDuiHandle(dui.txd, dui.txtName, GetDuiHandle(dui.DuiObject))
+  while not dui.loaded do
+      Wait(100)
+  end
 end
 
 RegisterNetEvent('onResourceStop', function(resourceName)

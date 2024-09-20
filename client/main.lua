@@ -88,7 +88,7 @@ local function drawLoop()
         end
 
         if store.activeInteraction and not newActive then
-            dui.updateMenu('updateInteraction', nil)
+          dui.updateMenu('updateInteraction', nil)
         end
 
         store.activeInteraction = newActive

@@ -11,32 +11,33 @@ const Option = function (props: OptionProps &
   const theme = useMantineTheme();
   return (
     <Flex
-      bg='rgba(0,0,0,0.8)'
-      p='0.75vh'
+      bg={props.selected ? 'rgba(0,0,0,0.7)': 'rgba(0,0,0,0.5)'}
+      p='0.6vh'
       w='100%'
       h='100%'
       align='center'
       gap='xs'
       style={{
-  
+        boxShadow:  props.selected ? `inset 0 0 0.9vh ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'inset 0 0 10px rgba(0,0,0,0.6)',
         transition: 'all ease-in-out 0.2s',
-        borderRadius: theme.radius.xs,
-        border: props.selected ? `5px solid ${colorWithAlpha(theme.colors[theme.primaryColor][9], 0.6)}` : '3px solid transparent',
+        borderRadius: theme.radius.sm,
+        border: props.selected ? `2px solid ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'none',
         
         
       }}
     >
       <FontAwesomeIcon 
-        color={props.selected ? 'rgba(255,255,255,0.8)': 'rgba(255,255,255,0.6)'}
+      size='1x'
+        color={props.selected ?  colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.9) : 'white'}
         style={{
           aspectRatio: 1/1,
-          fontSize: '1.5vh',
+          // fontSize: '1.5vh',
         }}
         icon={!props.selected ? props.icon : 'caret-left'} 
       />
       <Text
-        c={props.selected ? 'rgba(255,255,255,0.8)': 'rgba(255,255,255,0.6)'}
-        size='1.5vh'
+        c={props.selected ? 'rgba(255,255,255,0.9)': 'rgba(255,255,255,0.7)'}
+        size='sm'
         fw='bold'
       >{props.text} {props.selected}</Text>
 
