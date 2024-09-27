@@ -176,7 +176,7 @@ const Interaction = function() {
           pos='absolute'
           left='50%'
           top='50%'
-            gap='lg'
+            gap='xs'
             opacity={fade ? 1 : 0}
 
             style={{
@@ -212,7 +212,6 @@ internalEvent([
       id: '123123',
       options: [
         { text: 'Open Door', icon: 'door-open', disable: false },
-        { text: 'Lock Door', icon: 'lock', disable: false },
       ],
     },
   }
