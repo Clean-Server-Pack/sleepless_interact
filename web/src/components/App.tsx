@@ -18,13 +18,19 @@ const App: React.FC = () => {
         ...theme.colors, // Copy the existing colors
         custom: settings.customTheme || theme.colors?.custom
       },
+    };
+    
+    setCurTheme(updatedTheme);
+
+    // set primary color
+    setCurTheme({
+      ...updatedTheme,
       primaryColor: settings.primaryColor,
       primaryShade: settings.primaryShade,
-    };
+    });
 
-    setCurTheme(updatedTheme);
   }, [settings]);
-
+  
   return (
         
     <MantineProvider theme={curTheme} defaultColorScheme='dark'>
