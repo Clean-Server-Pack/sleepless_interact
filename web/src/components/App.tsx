@@ -1,6 +1,5 @@
 import '@mantine/dates/styles.css';
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import { MantineProvider } from '@mantine/core';
 import theme from '../theme';
 import { useSettings } from '../providers/settings/settings';
