@@ -32,6 +32,7 @@ const Option = function (props: OptionProps &
         color={ props.optionsLength > 1 && props.selected ?  colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.9) : 'white'}
         style={{
           aspectRatio: 1/1,
+          transition: 'all ease-in-out 0.2s',
           // fontSize: '1.5vh',
         }}
         icon={ props.optionsLength > 1 && props.selected ? 'caret-left': props.icon}
@@ -40,6 +41,10 @@ const Option = function (props: OptionProps &
         c={ props.optionsLength > 1 && props.selected ? 'rgba(255,255,255,0.9)': 'rgba(255,255,255,0.7)'}
         size='sm'
         fw='bold'
+        style={{
+          transition: 'all ease-in-out 0.2s',
+          fontFamily: 'Akrobat Bold',
+        }}
       >{props.text} {props.selected}</Text>
 
 

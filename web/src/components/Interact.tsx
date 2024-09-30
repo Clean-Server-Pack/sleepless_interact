@@ -119,12 +119,6 @@ const Interaction = function() {
     }
   });
 
-
-  useEffect(() => {
-    fetchNui("loaded");
-  }, []);
-
-
   // skip disabled options
 
   const toggleOption = (direction: 'up' | 'down') => {

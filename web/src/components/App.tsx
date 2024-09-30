@@ -5,6 +5,7 @@ import { MantineProvider } from '@mantine/core';
 import theme from '../theme';
 import { useSettings } from '../providers/settings/settings';
 import Interaction from './Interact';
+import { fetchNui } from '../utils/fetchNui';
 
 const App: React.FC = () => {
   const [curTheme, setCurTheme] = useState(theme);
@@ -30,6 +31,10 @@ const App: React.FC = () => {
     });
 
   }, [settings]);
+ 
+  useEffect(() => {
+    fetchNui("loaded");
+  }, []);
   return (
         
     <MantineProvider theme={curTheme} defaultColorScheme='dark'>
