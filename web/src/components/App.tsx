@@ -16,7 +16,7 @@ const App: React.FC = () => {
       ...theme, // Start with the existing theme object
       colors: {
         ...theme.colors, // Copy the existing colors
-        custom: settings.customTheme || theme.colors?.custom
+        custom: settings.customTheme
       },
     };
     
@@ -30,7 +30,6 @@ const App: React.FC = () => {
     });
 
   }, [settings]);
-  
   return (
         
     <MantineProvider theme={curTheme} defaultColorScheme='dark'>
