@@ -1,15 +1,18 @@
+import { MantineProvider } from '@mantine/core';
 import '@mantine/dates/styles.css';
 import React, { useEffect, useState } from "react";
-import { MantineProvider } from '@mantine/core';
-import theme from '../theme';
 import { useSettings } from '../providers/settings/settings';
+import theme from '../theme';
 import Interaction from './Interact';
-import { fetchNui } from '../utils/fetchNui';
 
 const App: React.FC = () => {
+  // Ensure the theme is updated when the settings change
+  
+  
+  
   const [curTheme, setCurTheme] = useState(theme);
   const settings = useSettings();
-  // Ensure the theme is updated when the settings change
+
 
   useEffect(() => {
     const updatedTheme = {
@@ -31,9 +34,7 @@ const App: React.FC = () => {
 
   }, [settings]);
  
-  useEffect(() => {
-    fetchNui("loaded");
-  }, []);
+
   return (
         
     <MantineProvider theme={curTheme} defaultColorScheme='dark'>

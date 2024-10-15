@@ -9,12 +9,10 @@ dui.txd = CreateRuntimeTxd(dui.txdName)
 dui.screenW, dui.screenH = GetActiveScreenResolution()
 dui.loaded = false
 
-RegisterNuiCallback('loaded', function(data, cb)
-    dui.loaded = true
+RegisterNuiCallback('loaded', function(_, cb)
     cb(1)
+    dui.loaded = true
 end)
-
-
 
 RegisterNuiCallback('setCurrentTextOption', function(data, cb)
     cb(1)
@@ -23,11 +21,18 @@ RegisterNuiCallback('setCurrentTextOption', function(data, cb)
 end)
 
 local function loadDui()
-  dui.DuiObject = CreateDui("https://cfx-nui-sleepless_interact/web/build/index.html", dui.screenW, dui.screenH)
-  CreateRuntimeTextureFromDuiHandle(dui.txd, dui.txtName, GetDuiHandle(dui.DuiObject))
-  while not dui.loaded do
-      Wait(100)
-  end
+    dui.DuiObject = CreateDui("https://cfx-nui-sleepless_interact/web/build/index.html", dui.screenW, dui.screenH)
+    CreateRuntimeTextureFromDuiHandle(dui.txd, dui.txtName, GetDuiHandle(dui.DuiObject))
+    while not dui.loaded do
+        Wait(100)
+    end
+    SendDuiMessage(dui.DuiObject, json.encode({
+        action = 'SET_SETTINGS',
+        data   = {
+          
+
+        }
+    }))
 end
 
 RegisterNetEvent('onResourceStop', function(resourceName)

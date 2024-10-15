@@ -17,9 +17,10 @@ library.add(fas, far, fab);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <SettingsProvider>
+      
       <App />
     </SettingsProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 
 

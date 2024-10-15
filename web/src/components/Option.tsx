@@ -6,7 +6,6 @@ import { OptionProps } from "./Interact";
 const Option = function (props: OptionProps & 
   {
     isSingular: boolean;
-    optionsLength: number;
     selected?: boolean;
   }
 ) {

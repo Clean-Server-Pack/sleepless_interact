@@ -1,6 +1,6 @@
 // import styles from "../modules/Interact.module.css";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { BackgroundImage, Flex, Text, useMantineTheme } from "@mantine/core";
+import { BackgroundImage, Flex, Text, Transition, useMantineTheme } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useNuiEvent } from "../hooks/useNuiEvent";
 import colorWithAlpha from "../utils/colorWithAlpha";
@@ -69,42 +69,33 @@ const KeyIcon = function() {
 
 
 const Interaction = function() {
-
-
   const [display, setDisplay] = useState<boolean>(false);
-  const [rawDisplay, setRawDisplay] = useState<boolean>(false);
-  const [fade, setFade] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (display) {
-      setRawDisplay(true);
-
-      setTimeout(() => {
-        setFade(true);
-      }, 100);
-    } else {
-      setFade(false);
-      setTimeout(() => {
-        setRawDisplay(false);
-      }, 250);
-    }
-  }, [display]);
-
-
-
-
   const [options, setOptions] = useState<OptionProps[]>([]);
   const [selected, setSelected] = useState<number>(0);
 
+
+
   useEffect(() => {
-    if (options.length > 0 && options[0].disable) {
-      setSelected(1);
-      fetchNui('setCurrentTextOption', { index: 2 });
+    if (!display) {
+      return;
+    }
+    if (options.length > 0) {
+      console.log('FINDING NEW ONE?')
+      // find first free one to have selected as default
+      const firstFree = options.findIndex(option => !option.disable);
+      if (firstFree !== -1) {
+        setSelected(firstFree);
+        fetchNui('setCurrentTextOption', { index: firstFree + 1 });
+      }
+    
+
+      // setSelected(1);
+      // fetchNui('setCurrentTextOption', { index: 2 });
     } else {
       setSelected(0);
       fetchNui('setCurrentTextOption', { index: 1 });
     } 
-  } , [options]);
+  } , [options,display])
 
 
   useNuiEvent<InteractionData | null>("updateInteraction", (newInteraction) => {
@@ -165,31 +156,35 @@ const Interaction = function() {
   return (
     <Wrapper>
       
-        {rawDisplay && (
-          <Flex
-          pos='absolute'
-          left='50%'
-          top='50%'
-            gap='xs'
-            opacity={fade ? 1 : 0}
-
-            style={{
-              transform: `translate(-2.25vh, -2.25vh)`,
-              transition: 'all ease-in-out 0.2s',
-              userSelect: 'none',
-            }}
-          >
-            <KeyIcon />
-            {options.length > 0 && (
-              <Options 
-                options={options} 
-                selected={selected}
-              /> 
-            )}
-
-          </Flex>
-        )}
- 
+        <Transition
+          duration={500}
+          timingFunction='ease'
+          transition='fade'
+          mounted={display}
+        >
+          {(transitionStyles) => (
+            <Flex
+              pos='absolute'
+              left='50%'
+              top='50%'
+                gap='xs'
+                style={{
+                  transform: `translate(-2.25vh, -2.25vh)`,
+                  transition: 'all ease-in-out 0.2s',
+                  userSelect: 'none',
+                  ...transitionStyles
+                }}
+              >
+              <KeyIcon />
+              {options.length > 0 && (
+                <Options 
+                  options={options} 
+                  selected={selected}
+                /> 
+              )}
+            </Flex>
+          )}
+        </Transition>
 
     </Wrapper>
 

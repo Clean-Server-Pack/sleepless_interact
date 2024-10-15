@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { defaultSettings } from './default_settings';
-import { SettingsProps } from './settings_props';
+import { SettingsProps } from './default_settings';
 import { isEnvBrowser } from '../../utils/misc';
 import { fetchNui } from '../../utils/fetchNui';
 import { useNuiEvent } from '../../hooks/useNuiEvent';
@@ -15,16 +15,27 @@ export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }
   useEffect(() => {
     if (!isEnvBrowser()) {
       fetchNui('GET_SETTINGS')
-        .then((data) => {
-          // Ensure data is of type SettingsProps
-          setSettings(data as SettingsProps);
-        }) 
-        .catch((error) => {
-          console.error('Failed to fetch settings:', error);
-        });
+      .then((data) => {
+        // Ensure data is of type SettingsProps
+        setSettings(data as SettingsProps);
+        console.log('TELLING LUA THE UI IS LOADED')
+
+        fetchNui('loaded')
+      }) 
+      .catch((error) => {
+        console.error('Failed to fetch settings:', error);
+      });
     } else {
       console.warn('SettingsProvider: Not fetching settings from NUI');
     }
+  }, []);
+
+
+  useEffect(() => {
+    console.log('SettingsProvider mounted');
+    return () => {
+      console.log('SettingsProvider unmounted');
+    };
   }, []);
 
   useNuiEvent('UPDATE_SETTINGS', (data: SettingsProps) => {
