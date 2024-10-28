@@ -11,7 +11,6 @@ files {
 	'web/build/index.html',
 	'web/build/**/*',
 	'imgs/*',
-	'@ox_inventory/data/vehicles.lua',
 	'imports/*.lua',
 	'classes/*.lua',
 	'bridge/**/client.lua'

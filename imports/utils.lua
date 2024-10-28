@@ -313,44 +313,5 @@ utils.checkOptions = function(interaction)
     return disabledOptionsCount < optionsLength
 end
 
-if store.ox_inv then
-    setmetatable(playerItems, {
-        __index = function(self, index)
-            self[index] = exports.ox_inventory:Search('count', index) or 0
-            return self[index]
-        end
-    })
-
-    AddEventHandler('ox_inventory:itemCount', function(name, count)
-        playerItems[name] = count
-    end)
-
-    local Vehicles = require '@ox_inventory.data.vehicles'
-    local backDoorIds = { 2, 3 }
-    utils.getTrunkPosition = function(entity)
-        local vehicleHash = GetEntityModel(entity)
-        local vehicleClass = GetVehicleClass(entity)
-        local checkVehicle = Vehicles.Storage[vehicleHash]
-
-        if (checkVehicle == 0 or checkVehicle == 1) or (not Vehicles.trunk[vehicleClass] and not Vehicles.trunk.models[vehicleHash]) then return end
-
-        ---@type number | number[]
-        local doorId = checkVehicle and 4 or 5
-
-        if not Vehicles.trunk.boneIndex?[vehicleHash] and not GetIsDoorValid(entity, doorId --[[@as number]]) then
-            if vehicleClass ~= 11 and (doorId ~= 5 or GetEntityBoneIndexByName(entity, 'boot') ~= -1 or not GetIsDoorValid(entity, 2)) then
-                return
-            end
-
-            if vehicleClass ~= 11 then
-                doorId = backDoorIds
-            end
-        end
-
-        local min, max = GetModelDimensions(vehicleHash)
-        local offset = (max - min) * (not checkVehicle and vec3(0.5, 0, 0.5) or vec3(0.5, 1, 0.5)) + min
-        return GetOffsetFromEntityInWorldCoords(entity, offset.x, offset.y, offset.z)
-    end
-end
 
 return utils
