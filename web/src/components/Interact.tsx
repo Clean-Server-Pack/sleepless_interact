@@ -22,18 +22,17 @@ export type InteractionData = {
 
 
 
-const Wrapper = function(props: {children: React.ReactNode}) {
-  const isBrowser = isEnvBrowser();
 
-  return isBrowser ? (
-    <BackgroundImage src="https://gcdnb.pbrd.co/images/rjKIWn6FNpDF.jpg?o=1" h='100vh' w='100vw'> 
-      {props.children}
+function Wrapper({ children }: { children: React.ReactNode }) {
+  return isEnvBrowser() ? ( 
+    <BackgroundImage w='100vw' h='100vh' style={{overflow:'hidden'}}
+      src="https://i.ytimg.com/vi/TOxuNbXrO28/maxresdefault.jpg"
+    >  
+      {children}
     </BackgroundImage>
   ) : (
-    props.children
+    <>{children}</>
   )
-
-
 }
 
 
@@ -131,6 +130,9 @@ const Interaction = function() {
 
   } 
 
+  useEffect(() => { 
+    fetchNui('loaded')
+  }, []);
 
   // Key and scroll event listeners
   useEffect(() => {
@@ -205,3 +207,5 @@ internalEvent([
     },
   }
 ])
+
+

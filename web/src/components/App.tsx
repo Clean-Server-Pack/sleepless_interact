@@ -1,39 +1,51 @@
-import { MantineProvider } from '@mantine/core';
+import { MantineColorShade, MantineColorsTuple, MantineProvider } from '@mantine/core';
 import '@mantine/dates/styles.css';
 import React, { useEffect, useState } from "react";
-import { useSettings } from '../providers/settings/settings';
+import { useNuiEvent } from '../hooks/useNuiEvent';
 import theme from '../theme';
 import Interaction from './Interact';
+
+
+type ThemeProps = {
+  customTheme: MantineColorsTuple;
+  primaryColor: string;
+  primaryShade: MantineColorShade;
+}
 
 const App: React.FC = () => {
   // Ensure the theme is updated when the settings change
   
+  useEffect(() => {
+    console.log('THE APP HAS LOADED FOR SLEEPLESS INTERACT IS IT TOO SOON?');
+  }, []);
+
   
   
   const [curTheme, setCurTheme] = useState(theme);
-  const settings = useSettings();
-
-
-  useEffect(() => {
+  
+  useNuiEvent<ThemeProps>('SET_THEME', (data) => {
+    console.log('THEME DATA', data);
     const updatedTheme = {
       ...theme, // Start with the existing theme object
       colors: {
         ...theme.colors, // Copy the existing colors
-        custom: settings.customTheme
+        custom: data.customTheme
       },
     };
-    
+
     setCurTheme(updatedTheme);
 
     // set primary color
     setCurTheme({
       ...updatedTheme,
-      primaryColor: settings.primaryColor,
-      primaryShade: settings.primaryShade,
+      primaryColor: data.primaryColor,
+      primaryShade: data.primaryShade,
     });
 
-  }, [settings]);
- 
+    console.log('SET THE THEME FOR THIS DUI OBJECT', data);
+  }); 
+
+
 
   return (
         

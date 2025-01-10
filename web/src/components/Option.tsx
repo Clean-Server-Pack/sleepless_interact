@@ -22,7 +22,7 @@ const Option = function (props: OptionProps &
         boxShadow:  !props.isSingular && props.selected ? `inset 0 0 0.9vh ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'inset 0 0 10px rgba(0,0,0,0.6)',
         transition: 'all ease-in-out 0.2s',
         borderRadius: theme.radius.sm,
-        border: !props.isSingular && props.selected ? `2px solid ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'none',
+        border: !props.isSingular && props.selected ? `0.2vh solid ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'none',
         
         
       }}

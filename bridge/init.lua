@@ -9,6 +9,8 @@ if not framework then
     return print('No framework detected')
 end
 
+print('FRAMEWORK DETECTED: ' .. framework..'sleepless_interact')
+
 local resource = ('bridge.%s.client'):format(framework)
 
 require(resource)

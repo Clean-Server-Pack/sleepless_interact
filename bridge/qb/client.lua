@@ -40,7 +40,11 @@ RegisterNetEvent('QBCore:Player:SetPlayerData', function(playerData)
     if not ox_inv then setPlayerItems(playerData) end
 end)
 
+local playerLoaded = false 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+  if playerLoaded then return end
+  playerLoaded = true
+  print('SETTING LOADED OF PLAYER IN SLEEPLESS_INTERACT')
     local PlayerData = QBCore.Functions.GetPlayerData()
 
     Groups = {
@@ -54,6 +58,7 @@ RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
 
     if not ox_inv then setPlayerItems(PlayerData) end
 
+    print('SETTING LOADED OF PLAYER IN SLEEPLESS_INTERACT')
     TriggerEvent('sleepless_interact:updateGroups', Groups)
     TriggerEvent('sleepless_interact:LoadDui')
     BuilderLoop()
@@ -66,23 +71,23 @@ end)
 
 
 AddEventHandler('onResourceStart', function(resource)
-    if resource == GetCurrentResourceName() then
-        local PlayerData = QBCore.Functions.GetPlayerData()
+  if resource == GetCurrentResourceName() then
+    local PlayerData = QBCore.Functions.GetPlayerData()
 
-        Groups = {
-            [PlayerData.job.name] = PlayerData.job.grade.level,
-            [PlayerData.gang.name] = PlayerData.gang.grade.level
-        }
-        Player = {
-            job = PlayerData.job.name,
-            gang = PlayerData.gang.name,
-        }
+    Groups = {
+        [PlayerData.job.name] = PlayerData.job.grade.level,
+        [PlayerData.gang.name] = PlayerData.gang.grade.level
+    }
+    Player = {
+        job = PlayerData.job.name,
+        gang = PlayerData.gang.name,
+    }
 
-        if not ox_inv then setPlayerItems(PlayerData) end
-        
-        TriggerEvent('sleepless_interact:updateGroups', Groups)
-        BuilderLoop()
-    end
+    if not ox_inv then setPlayerItems(PlayerData) end
+    
+    TriggerEvent('sleepless_interact:updateGroups', Groups)
+    BuilderLoop()
+  end
 end)
 
 return Groups

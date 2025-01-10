@@ -26,3 +26,5 @@ client_script {
 	'exports/*.lua',
 	'client/*.lua',
 }
+
+dependency 'ox_lib'

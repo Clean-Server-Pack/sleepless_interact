@@ -24,14 +24,26 @@ local function loadDui()
     dui.DuiObject = CreateDui("https://cfx-nui-sleepless_interact/web/build/index.html", dui.screenW, dui.screenH)
     CreateRuntimeTextureFromDuiHandle(dui.txd, dui.txtName, GetDuiHandle(dui.DuiObject))
     while not dui.loaded do
-        Wait(100)
+      Wait(100)
     end
     SendDuiMessage(dui.DuiObject, json.encode({
-        action = 'SET_SETTINGS',
-        data   = {
-          
-
-        }
+      action = 'SET_THEME',
+      data   = {
+        primaryColor    = GetConvar('clean_lib:primaryColor', 'clean'),
+        primaryShade    = GetConvarInt('clean_lib:primaryShade', 9),
+        customTheme     = json.decode(GetConvar('clean_lib:customTheme', json.encode({
+          "#f8edff",
+          "#e9d9f6",
+          "#d0b2e8",
+          "#b588da",
+          "#9e65cf",
+          "#914ec8",
+          "#8a43c6",
+          "#7734af",
+          "#692d9d",
+          "#5c258b"
+        }))),
+      }
     }))
 end
 
