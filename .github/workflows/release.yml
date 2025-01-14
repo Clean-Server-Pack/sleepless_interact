@@ -75,7 +75,7 @@ jobs:
         run: |
           mkdir -p ./temp/sleepless_interact
           mkdir -p ./temp/sleepless_interact/web/
-          cp ./fxmanifest.lua ./___types.lua ./init.lua ./README.md ./temp/sleepless_interact/
+          cp ./fxmanifest.lua ./__types.lua ./init.lua ./README.md ./temp/sleepless_interact/
           cp -r ./bridge ./temp/sleepless_interact
           cp -r ./classes ./temp/sleepless_interact
           cp -r ./client ./temp/sleepless_interact
