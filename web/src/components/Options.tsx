@@ -12,7 +12,7 @@ export const Options = function (props: { options: OptionProps[]; selected?: num
   return (
     <Flex
       w={!isSingular ? '10vw' : 'auto'}
-      // mt='0.2vh'
+      mt='0.2vh'
       h='100%'
       direction={'column'}
       gap='xs'

@@ -151,7 +151,9 @@ const Interaction = function() {
                   ...transitionStyles
                 }}
               >
-              <KeyIcon />
+              <KeyIcon 
+                options={options}
+              />
               {options.length > 0 && (
                 <Options 
                   options={options} 
@@ -176,6 +178,7 @@ internalEvent([
     data: {
       id: '123123',
       options: [
+        { text: 'Open Door', icon: 'door-open', disable: false },
         { text: 'Open Door', icon: 'door-open', disable: false },
       ],
     },
