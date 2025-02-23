@@ -21,7 +21,7 @@ const Option = function (props: OptionProps &
       style={{
         boxShadow:  !props.isSingular && props.selected ? `inset 0 0 0.9vh ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'inset 0 0 10px rgba(0,0,0,0.6)',
         transition: 'all ease-in-out 0.2s',
-        borderRadius: theme.radius.sm,
+        borderRadius: theme.radius.xxs,
         border: !props.isSingular && props.selected ? `0.2vh solid ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'none',
         
         
@@ -34,12 +34,13 @@ const Option = function (props: OptionProps &
           aspectRatio: 1/1,
           transition: 'all ease-in-out 0.2s',
           // fontSize: '1.5vh',
+          fontSize: theme.fontSizes.xxs,
         }}
         icon={ !props.isSingular && props.selected ? 'caret-left': props.icon}
       />
       <Text
         c={ !props.isSingular && props.selected ? 'rgba(255,255,255,0.9)': 'rgba(255,255,255,0.7)'}
-        size='sm'
+        size='xxs'
         fw='bold'
         style={{
           transition: 'all ease-in-out 0.2s',

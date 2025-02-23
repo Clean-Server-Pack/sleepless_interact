@@ -65,7 +65,9 @@ function Interaction:handleInteract()
     end
 
     local option = self.options[store.currentOptionIndex]
-
+    SendNuiMessage(json.encode({
+      action = 'optionPressed',
+    }))
     if option.action then
         option.action(self)
     elseif option.onSelect then -- ox_target compatibility

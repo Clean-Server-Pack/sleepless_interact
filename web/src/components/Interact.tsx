@@ -8,6 +8,7 @@ import { fetchNui } from "../utils/fetchNui";
 import { internalEvent } from "../utils/internalEvent";
 import { isEnvBrowser } from "../utils/misc";
 import { Options } from "./Options";
+import KeyIcon from "./KeyIcon";
 
 export type OptionProps = { 
   text: string; 
@@ -36,35 +37,7 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 }
 
 
-const KeyIcon = function() {
-  const theme = useMantineTheme();
-  return (
-    <Flex
-      bg='rgba(0,0,0,0.5)'
-      direction={'column'}
-      align={'center'}
-      justify={'center'}
-      h='3.5vh'
-      style={{
-        aspectRatio: 1/1,
-        borderRadius: theme.radius.sm,
-        outline:  `2px solid ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}`,
-      }}
-    >
-      <Text
-        size='md'
-        style={{
-       
 
-          fontFamily: 'Akrobat Black',
-          color: theme.colors['gray'][1],
-        }}
-      >
-        E
-      </Text>
-    </Flex>
-  )
-}
 
 
 const Interaction = function() {
@@ -166,9 +139,10 @@ const Interaction = function() {
         >
           {(transitionStyles) => (
             <Flex
-              pos='absolute'
-              left='50%'
-              top='50%'
+                pos='absolute'
+                left='50%'
+              // align='center'
+                top='50%'
                 gap='xs'
                 style={{
                   transform: `translate(-2.25vh, -2.25vh)`,
