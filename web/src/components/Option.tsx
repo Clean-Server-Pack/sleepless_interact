@@ -13,16 +13,16 @@ const Option = function (props: OptionProps &
   return (
     <Flex
       bg={props.selected ? 'rgba(0,0,0,0.7)': 'rgba(0,0,0,0.5)'}
-      p='0.6vh'
+      p='xs'
       w='100%'
       h='100%'
       align='center'
-      gap='0.4vh'
+      gap='xs'
       style={{
-        boxShadow:  !props.isSingular && props.selected ? `inset 0 0 0.9vh ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'inset 0 0 10px rgba(0,0,0,0.6)',
+        boxShadow:  !props.isSingular && props.selected ? `inset 0 0 0.9vh ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'inset 0 0 0.1vh rgba(0,0,0,0.6)',
         transition: 'all ease-in-out 0.2s',
         borderRadius: theme.radius.xxs,
-        outline: !props.isSingular && props.selected ? `0.1vh solid ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : 'none',
+        outline: !props.isSingular && props.selected ? `0.2vh solid ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}` : '0.2vh solid rgba(0,0,0,0.1)',
         
         
       }}
@@ -33,17 +33,15 @@ const Option = function (props: OptionProps &
           aspectRatio: 1/1,
           transition: 'all ease-in-out 0.2s',
           // fontSize: '1.5vh',
-          fontSize: '1vh',
+          fontSize: theme.fontSizes.xs,
         }}
         icon={ !props.isSingular && props.selected ? 'caret-left': props.icon}
       />
       <Text
         c={ !props.isSingular && props.selected ? 'rgba(255,255,255,0.9)': 'rgba(255,255,255,0.7)'}
-        size='1vh'
-        fw='bold'
+        size='xs'
         style={{
           transition: 'all ease-in-out 0.2s',
-          fontFamily: 'Akrobat Bold',
         }}
       >{props.text} {props.selected}</Text>
 

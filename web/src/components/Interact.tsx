@@ -1,7 +1,7 @@
 // import styles from "../modules/Interact.module.css";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { BackgroundImage, Flex, Text, Transition, useMantineTheme } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNuiEvent } from "../hooks/useNuiEvent";
 import colorWithAlpha from "../utils/colorWithAlpha";
 import { fetchNui } from "../utils/fetchNui";
@@ -128,6 +128,10 @@ const Interaction = function() {
     }
   }, [selected, options]);
 
+  const isSingular = useMemo(() => {
+    return options.filter(option => !option.disable).length === 1;
+  }, [options]);
+
   return (
     <Wrapper>
       
@@ -141,7 +145,7 @@ const Interaction = function() {
             <Flex
                 pos='absolute'
                 left='50%'
-              // align='center'
+                align={isSingular ? 'center' : 'flex-start'}
                 top='50%'
                 gap='xs'
                 style={{

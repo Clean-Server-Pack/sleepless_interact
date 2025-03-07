@@ -32,16 +32,16 @@ function KeyIcon(props: {options: OptionProps[]}) {
 
   return (
     <Flex
-      mt={!isSingular ? '0vh' : '0'}
+      mt={!isSingular ? '0.2vh' : '0'}
       bg='rgba(0,0,0,0.5)'
       direction={'column'}
       align={'center'}
       justify={'center'}
-      h='2.6vh'
-      w='2.6vh'
+      h='3.5vh'
+      w='3.5vh'
       style={{
         aspectRatio: 1/1,
-        fontSize: theme.fontSizes.xxs,
+        fontSize: theme.fontSizes.xs,
         borderRadius: theme.radius.xxs,
         fontFamily: 'Akrobat Bold',
         outline:  `${keyPressed ? '0.2vh' : '0.1vh'} solid ${colorWithAlpha(theme.colors[theme.primaryColor][theme.primaryShade as number], 0.8)}`,
