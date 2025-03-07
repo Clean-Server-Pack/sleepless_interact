@@ -52,7 +52,6 @@ const Interaction = function() {
       return;
     }
     if (options.length > 0) {
-      console.log('FINDING NEW ONE?')
       // find first free one to have selected as default
       const firstFree = options.findIndex(option => !option.disable);
       if (firstFree !== -1) {

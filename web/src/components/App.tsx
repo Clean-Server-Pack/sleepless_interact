@@ -15,16 +15,13 @@ type ThemeProps = {
 const App: React.FC = () => {
   // Ensure the theme is updated when the settings change
   
-  useEffect(() => {
-    console.log('THE APP HAS LOADED FOR SLEEPLESS INTERACT IS IT TOO SOON?');
-  }, []);
 
-  
+
   
   const [curTheme, setCurTheme] = useState(theme);
   
   useNuiEvent<ThemeProps>('SET_THEME', (data) => {
-    console.log('THEME DATA', data);
+
     const updatedTheme = {
       ...theme, // Start with the existing theme object
       colors: {
@@ -41,8 +38,6 @@ const App: React.FC = () => {
       primaryColor: data.primaryColor,
       primaryShade: data.primaryShade,
     });
-
-    console.log('SET THE THEME FOR THIS DUI OBJECT', data);
   }); 
 
 

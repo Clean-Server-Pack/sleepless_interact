@@ -65,7 +65,7 @@ function Interaction:handleInteract()
     end
 
     local option = self.options[store.currentOptionIndex]
-    SendNuiMessage(json.encode({
+    SendDuiMessage(dui.DuiObject, json.encode({
       action = 'optionPressed',
     }))
     if option.action then
