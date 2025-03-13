@@ -29,9 +29,9 @@ local function loadDui()
     SendDuiMessage(dui.DuiObject, json.encode({
       action = 'SET_THEME',
       data   = {
-        primaryColor    = GetConvar('clean_lib:primaryColor', 'clean'),
-        primaryShade    = GetConvarInt('clean_lib:primaryShade', 9),
-        customTheme     = json.decode(GetConvar('clean_lib:customTheme', json.encode({
+        primaryColor    = GetConvar('dirk_lib:primaryColor', 'dirk'),
+        primaryShade    = GetConvarInt('dirk_lib:primaryShade', 9),
+        customTheme     = json.decode(GetConvar('dirk_lib:customTheme', json.encode({
           "#f8edff",
           "#e9d9f6",
           "#d0b2e8",
